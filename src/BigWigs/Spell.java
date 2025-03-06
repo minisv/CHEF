@@ -14,6 +14,6 @@ public class Spell {
 
     @Override
     public String toString() {
-        return boss + " " + spellID;
+        return spellID + ", " + boss;
     }
 }
