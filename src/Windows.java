@@ -102,31 +102,35 @@ public class Windows extends Frame {
 
             String program = programGroup.getSelectedCheckbox().getLabel();
             String fileType = fileTypeGroup.getSelectedCheckbox().getLabel();
-            if (program.equals("DBM")) {
-                spellArea.setText("");
-                DBM dbmCheck = new DBM(directory, fileType);
-                ArrayList<String> noExistFiles = dbmCheck.getNoExistFiles();
-                noExistFiles.forEach(spellArea::append);
-                statusLabel.setText("확인된 누락 갯수는 "+noExistFiles.size()+"개 입니다.");
-            } else if (program.equals("BigWigs")) {
-                showDialog("전체 확인: 확인 버튼을 누르고 잠시 기다려 주세요.");
-                spellArea.setText("");
-                All all = new All(directory, fileType);
-                ArrayList<Spell> noExistFiles = all.getNoExistSpells();
-                noExistFiles.forEach(spell -> {
-                    spellArea.append(spell.getSpellID()+"\n");
-                });
-                statusLabel.setText("확인된 누락 갯수는 "+noExistFiles.size()+"개 입니다. 체크 대상 파일 갯수는 "+all.getRecordedFiles()+"개 입니다.");
-            } else if (program.equals("BigWigs Season Only")) {
-                showDialog("시즌 확인: 확인 버튼을 누르고 잠시 기다려 주세요.");
-                spellArea.setText("");
-                Season season = new Season(directory, fileType);
-                ArrayList<Spell> noExistFiles = season.getNoExistSpells();
-                noExistFiles.forEach(spell -> {
-                    spellArea.append(spell.getSpellID()+"\n");
-                    usageArea.append(spell.toString()+"\n");
-                });
-                statusLabel.setText("확인된 누락 갯수는 "+noExistFiles.size()+"개 입니다. 체크 대상 파일 갯수는 "+season.getRecordedFiles()+"개 입니다.");
+            switch (program) {
+                case "DBM" -> {
+                    spellArea.setText("");
+                    DBM dbm = new DBM(directory, fileType);
+                    ArrayList<String> noExistFiles = dbm.getNoExistFiles();
+                    noExistFiles.forEach(spellArea::append);
+                    statusLabel.setText("확인된 누락 갯수는 " + noExistFiles.size() + "개 입니다.");
+                }
+                case "BigWigs" -> {
+                    showDialog("전체 확인: 확인 버튼을 누르고 잠시 기다려 주세요.");
+                    spellArea.setText("");
+                    All all = new All(directory, fileType);
+                    ArrayList<Spell> noExistFiles = all.getNoExistSpells();
+                    noExistFiles.forEach(spell -> {
+                        spellArea.append(spell.getSpellID() + "\n");
+                    });
+                    statusLabel.setText("확인된 누락 갯수는 " + noExistFiles.size() + "개 입니다. 체크 대상 파일 갯수는 " + all.getRecordedFiles() + "개 입니다.");
+                }
+                case "BigWigs Season Only" -> {
+                    showDialog("시즌 확인: 확인 버튼을 누르고 잠시 기다려 주세요.");
+                    spellArea.setText("");
+                    Season season = new Season(directory, fileType);
+                    ArrayList<Spell> noExistFiles = season.getNoExistSpells();
+                    noExistFiles.forEach(spell -> {
+                        spellArea.append(spell.getSpellID() + "\n");
+                        usageArea.append(spell.toString() + "\n");
+                    });
+                    statusLabel.setText("확인된 누락 갯수는 " + noExistFiles.size() + "개 입니다. 체크 대상 파일 갯수는 " + season.getRecordedFiles() + "개 입니다.");
+                }
             }
         });
     }
