@@ -1,8 +1,8 @@
 package BigWigs;
 
 public class Spell {
-    private String boss;
-    private String spellID;
+    private final String boss;
+    private final String spellID;
 
     protected Spell(String boss, String spellID) {
         this.boss = boss;
