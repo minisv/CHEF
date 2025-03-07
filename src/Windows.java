@@ -16,6 +16,7 @@ public class Windows extends Frame {
     private CheckboxGroup fileTypeGroup;
     private File directory;
     private Button checkExistFilesButton;
+    private Button checkNonUseFilesButton;
     private TextArea spellArea;
     private TextArea usageArea;
     private Label statusLabel;
@@ -89,15 +90,20 @@ public class Windows extends Frame {
 
             boolean enable = directory != null;
             checkExistFilesButton.setEnabled(enable);
+            if (!programGroup.getSelectedCheckbox().getLabel().equals("DBM")) checkNonUseFilesButton.setEnabled(enable);
             if (enable) statusLabel.setText("폴더 : "+directory.getAbsolutePath());
         });
     }
 
     private void checkExistFiles() {
-        checkExistFilesButton = new Button("파일 체크를 시작 합니다!");
-        checkExistFilesButton.setBounds(20, 130, 560, 30);
+        checkExistFilesButton = new Button("누락 파일 체크");
+        checkExistFilesButton.setBounds(20, 130, 280, 30);
+        checkNonUseFilesButton = new Button("사용하지 않는 파일 체크");
+        checkNonUseFilesButton.setBounds(300, 130, 280, 30);
         add(checkExistFilesButton);
+        add(checkNonUseFilesButton);
         checkExistFilesButton.setEnabled(false);
+        checkNonUseFilesButton.setEnabled(false);
         checkExistFilesButton.addActionListener(event -> {
 
             String program = programGroup.getSelectedCheckbox().getLabel();
@@ -127,9 +133,32 @@ public class Windows extends Frame {
                     ArrayList<Spell> noExistFiles = season.getNoExistSpells();
                     noExistFiles.forEach(spell -> {
                         spellArea.append(spell.getSpellID() + "\n");
-                        usageArea.append(spell.toString() + "\n");
+                        usageArea.append(spell + "\n");
                     });
                     statusLabel.setText("확인된 누락 갯수는 " + noExistFiles.size() + "개 입니다. 체크 대상 파일 갯수는 " + season.getRecordedFiles() + "개 입니다.");
+                }
+            }
+        });
+        checkNonUseFilesButton.addActionListener(event -> {
+
+            String program = programGroup.getSelectedCheckbox().getLabel();
+            String fileType = fileTypeGroup.getSelectedCheckbox().getLabel();
+            switch (program) {
+                case "DBM" -> {
+                    showDialog("DBM 은 지원하지 않는 기능 입니다.");
+                }
+                case "BigWigs" -> {
+                    showDialog("전체 확인: 확인 버튼을 누르고 잠시 기다려 주세요.");
+                    spellArea.setText("");
+                    All all = new All(directory, fileType);
+                    ArrayList<String> noMoreUseFiles = all.getNoMoreUseFiles();
+                    noMoreUseFiles.forEach(spell -> {
+                        spellArea.append(spell + "\n");
+                    });
+                    statusLabel.setText("확인된 더이상 사용하지 않는 파일 갯수는 " + noMoreUseFiles.size() + "개 입니다. 체크 대상 파일 갯수는 " + all.getRecordedFiles() + "개 입니다.");
+                }
+                case "BigWigs Season Only" -> {
+                    showDialog("BigWigs Season Only 는 지원하지 않는 기능 입니다.");
                 }
             }
         });

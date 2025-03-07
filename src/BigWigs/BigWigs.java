@@ -12,14 +12,18 @@ import java.util.Objects;
 
 public class BigWigs {
 
+    private final ArrayList<Spell> allSpells;
     private ArrayList<Spell> spellList;
     private final ArrayList<Spell> noExistSpells;
     private final HashSet<String> recordedFiles;
     protected ArrayList<String> checkFiles;
+    protected ArrayList<String> noMoreUseFiles;
 
     public BigWigs(File folder, String fileType) {
+        allSpells = new ArrayList<>();
         noExistSpells = new ArrayList<>();
         recordedFiles = new HashSet<>();
+        noMoreUseFiles = new ArrayList<>();
         addCheckFiles();
         folderIndexing(folder, fileType);
 
@@ -44,6 +48,7 @@ public class BigWigs {
                 while ((inputLine = bufferedReader.readLine()) != null) {
                     makeSpellList(inputLine, spellList);
                 }
+                allSpells.addAll(spellList);
                 bufferedReader.close();
                 connection.disconnect();
 
@@ -55,10 +60,16 @@ public class BigWigs {
                 throw new RuntimeException(e);
             }
         });
+
+        noMoreUseFiles.addAll(recordedFiles);
+        allSpells.forEach(spell -> {
+            if (recordedFiles.contains(spell.getSpellID())) noMoreUseFiles.remove(spell.getSpellID());
+        });
     }
 
     public ArrayList<Spell> getNoExistSpells() { return noExistSpells; }
     public int getRecordedFiles() { return recordedFiles.size(); }
+    public ArrayList<String> getNoMoreUseFiles() { return noMoreUseFiles; }
 
     protected void addCheckFiles() {
         checkFiles = new ArrayList<>();
