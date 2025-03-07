@@ -90,7 +90,8 @@ public class Windows extends Frame {
 
             boolean enable = directory != null;
             checkExistFilesButton.setEnabled(enable);
-            if (!programGroup.getSelectedCheckbox().getLabel().equals("DBM")) checkNonUseFilesButton.setEnabled(enable);
+            checkNonUseFilesButton.setEnabled(false);
+            if (programGroup.getSelectedCheckbox().getLabel().equals("BigWigs")) checkNonUseFilesButton.setEnabled(enable);
             if (enable) statusLabel.setText("폴더 : "+directory.getAbsolutePath());
         });
     }
