@@ -15,15 +15,15 @@ public class Season extends BigWigs {
     @Override
     protected void addCheckFiles() {
         super.addCheckFiles();
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/BigWigs/refs/heads/master/LiberationOfUndermine/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/BfA/Mechagon/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/BfA/TheMotherlode/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/Shadowlands/TheaterOfPain/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/CinderbrewMeadery/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/DarkflameCleft/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/TheRookery/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/PrioryOfTheSacredFlame/Options/Sounds.lua");
-        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/OperationFloodgate/Options/Sounds.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/BigWigs/refs/heads/master/LiberationOfUndermine/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/OperationFloodgate/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/CinderbrewMeadery/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/DarkflameCleft/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/PrioryOfTheSacredFlame/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/WarWithin/TheRookery/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/BfA/Mechagon/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/BfA/TheMotherlode/!Options.lua");
+        checkFiles.add("https://raw.githubusercontent.com/BigWigsMods/LittleWigs/refs/heads/master/Shadowlands/TheaterOfPain/!Options.lua");
     }
 
     @Override
