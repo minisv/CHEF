@@ -36,7 +36,7 @@ public class Windows extends Frame {
         setLocation(dimension.width / 2 - this.getSize().width / 2,
                 dimension.height / 2 - this.getSize().height / 2);
         setTitle("DBM / BigWigs 보이스 팩 누락 파일 검사 프로그램 - 미니룬 (디코: minirune)");
-        setIconImage(new ImageIcon(getClass().getResource("resources/images/wowbot.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("images/wowbot.png")).getImage());
         setVisible(true);
         setResizable(false);
 
@@ -112,6 +112,7 @@ public class Windows extends Frame {
             switch (program) {
                 case "DBM" -> {
                     spellArea.setText("");
+                    usageArea.setText("");
                     DBM dbm = new DBM(directory, fileType);
                     ArrayList<String> noExistFiles = dbm.getNoExistFiles();
                     noExistFiles.forEach(spellArea::append);
@@ -120,6 +121,7 @@ public class Windows extends Frame {
                 case "BigWigs" -> {
                     showDialog("전체 확인: 확인 버튼을 누르고 잠시 기다려 주세요.");
                     spellArea.setText("");
+                    usageArea.setText("");
                     All all = new All(directory, fileType);
                     ArrayList<Spell> noExistFiles = all.getNoExistSpells();
                     noExistFiles.forEach(spell -> {
@@ -130,6 +132,7 @@ public class Windows extends Frame {
                 case "BigWigs Season Only" -> {
                     showDialog("시즌 확인: 확인 버튼을 누르고 잠시 기다려 주세요.");
                     spellArea.setText("");
+                    usageArea.setText("");
                     Season season = new Season(directory, fileType);
                     ArrayList<Spell> noExistFiles = season.getNoExistSpells();
                     noExistFiles.forEach(spell -> {
